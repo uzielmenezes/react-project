@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
+import Loading from "../../layout/loading/Loading";
 import Message from "../../layout/message/Message";
 import ProjectCard from "../../project/project-card/ProjectCard";
 import Container from "./../../layout/container/Container";
@@ -9,6 +10,7 @@ import styles from "./Project.module.css";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
+  const [removeLoading, setRemoveLoading] = useState(false);
 
   const location = useLocation();
   let message = "";
@@ -18,17 +20,20 @@ function Projects() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/projects", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setProjects(data);
+    setTimeout(() => {
+      fetch("http://localhost:5000/projects", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((e) => console.log(e));
+        .then((resp) => resp.json())
+        .then((data) => {
+          setProjects(data);
+          setRemoveLoading(true);
+        })
+        .catch((e) => console.log(e));
+    }, 300);
   }, []);
 
   return (
@@ -49,6 +54,10 @@ function Projects() {
               category={project.category.name}
             />
           ))}
+        {!removeLoading && <Loading />}
+        {removeLoading && projects.length === 0 && (
+          <p>You don't have any projects yet!</p>
+        )}
       </Container>
     </div>
   );
