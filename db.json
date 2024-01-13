@@ -1,5 +1,61 @@
 {
-  "projects": [],
+  "projects": [
+    {
+      "name": "ProjectOne",
+      "budget": "5000",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 1
+    },
+    {
+      "name": "ProjectTwo",
+      "budget": "10000",
+      "category": {
+        "id": "2",
+        "name": "Development"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 2
+    },
+    {
+      "name": "ProjectThree",
+      "budget": "15000",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 3
+    },
+    {
+      "name": "ProjectFour",
+      "budget": "50000",
+      "category": {
+        "id": "4",
+        "name": "Planning"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 4
+    },
+    {
+      "name": "ProjectFive",
+      "budget": "20000",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 5
+    }
+  ],
   "categories": [
     {
       "id": 1,
@@ -7,7 +63,7 @@
     },
     {
       "id": 2,
-      "name": "Desenvolvimento"
+      "name": "Development"
     },
     {
       "id": 3,
@@ -15,7 +71,7 @@
     },
     {
       "id": 4,
-      "name": "Planejamento"
+      "name": "Planning"
     }
   ]
 }
