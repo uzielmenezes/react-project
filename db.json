@@ -1,8 +1,8 @@
 {
   "projects": [
     {
-      "name": "ProjectTwo",
-      "budget": "10000",
+      "name": "ProjectTwo2",
+      "budget": "10",
       "category": {
         "id": "2",
         "name": "Development"
@@ -23,7 +23,7 @@
       "id": 3
     },
     {
-      "name": "ProjectFour",
+      "name": "ProjectFour4",
       "budget": "50000",
       "category": {
         "id": "4",
