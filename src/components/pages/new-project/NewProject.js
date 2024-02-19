@@ -7,7 +7,8 @@ function NewProject() {
   const navigate = useNavigate();
 
   function createPost(project) {
-    /** Initializes project cost and services */
+    // TODO validations
+    // Initializes project cost and services
     project.cost = 0;
     project.services = [];
 
