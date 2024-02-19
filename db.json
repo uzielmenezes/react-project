@@ -18,7 +18,7 @@
         "id": "3",
         "name": "Design"
       },
-      "cost": 200,
+      "cost": 500,
       "services": [
         {
           "name": "Excel Implementation",
@@ -31,6 +31,12 @@
           "cost": "100",
           "description": "new task",
           "id": "3e861e4a-2f23-4ba7-8a31-4d7d836a85a9"
+        },
+        {
+          "name": "service 3",
+          "cost": "300",
+          "description": "eee",
+          "id": "0514b184-ab0a-469e-a82d-68103f186ac6"
         }
       ],
       "id": 3
@@ -42,8 +48,27 @@
         "id": "4",
         "name": "Planning"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 500,
+      "services": [
+        {
+          "name": "New Service",
+          "cost": "100",
+          "description": "lallala",
+          "id": "46ac2676-bb8c-479d-9aea-25925800df08"
+        },
+        {
+          "name": "Service 2",
+          "cost": "200",
+          "description": "fdsfdsf",
+          "id": "7d7dc628-4d0a-42fb-8e26-55bb7f782e86"
+        },
+        {
+          "name": "Service 3",
+          "cost": "200",
+          "description": "new task",
+          "id": "f6cb8ef7-5ae8-4b5f-9b15-efee2eee10eb"
+        }
+      ],
       "id": 4
     }
   ],
