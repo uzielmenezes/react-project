@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 import Container from "../../layout/container/Container";
 import Loading from "../../layout/loading/Loading";
 import Message from "../../layout/message/Message";
 import ProjectForm from "../../project/project-form/ProjectForm";
+import ServiceForm from "../../service/service-form/ServiceForm";
 import styles from "./Project.module.css";
 
 const url = "http://localhost:5000/projects";
@@ -60,6 +62,42 @@ function Project() {
       .catch((err) => console.log(err));
   }
 
+  function createService(project) {
+    // last service
+    const lastService = project.services[project.services.length - 1];
+
+    lastService.id = uuidv4();
+
+    const lastServiceCost = lastService.cost;
+    const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost);
+
+    // max value validation
+    if (newCost > parseFloat(project.budget)) {
+      setMessage("Budget exceeded, verify the services cost!");
+      setType("error");
+      project.services.pop();
+      return;
+    }
+
+    // add service cost to project total cost
+    project.cost = newCost;
+
+    // update project
+    fetch(`${url}/${project.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(project),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // show services
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  }
+
   function toggleProjectForm() {
     setShowProjectForm((value) => !value);
   }
@@ -107,7 +145,13 @@ function Project() {
                 {!showServiceForm ? "Add Service" : "Close"}
               </button>
               <div className={styles.project_info}>
-                {showServiceForm && <div>service form</div>}
+                {showServiceForm && (
+                  <ServiceForm
+                    handleSubmit={createService}
+                    btnText="Add Service"
+                    projectData={project}
+                  />
+                )}
               </div>
             </div>
             <h2>Services</h2>

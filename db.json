@@ -18,8 +18,21 @@
         "id": "3",
         "name": "Design"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 200,
+      "services": [
+        {
+          "name": "Excel Implementation",
+          "cost": "100",
+          "description": "new task",
+          "id": "3e861e4a-2f23-4ba7-8a31-4d7d836a85a9"
+        },
+        {
+          "name": "Excel Implementation",
+          "cost": "100",
+          "description": "new task",
+          "id": "3e861e4a-2f23-4ba7-8a31-4d7d836a85a9"
+        }
+      ],
       "id": 3
     },
     {
