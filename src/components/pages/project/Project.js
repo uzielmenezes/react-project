@@ -165,6 +165,7 @@ function Project() {
               {services.length ? (
                 services.map((service) => (
                   <ServiceCard
+                    id={service.id}
                     name={service.name}
                     cost={service.cost}
                     description={service.description}
