@@ -65,14 +65,30 @@ function Project() {
       .catch((err) => console.log(err));
   }
 
-  function createService(project) {
-    // last service
-    const lastService = project.services[project.services.length - 1];
+  function createService(service) {
+    // service validation
+    if (!service?.name) {
+      setMessage("Empty names are not allowed");
+      setType("error");
+      resetMessage();
+      return;
+    }
 
-    lastService.id = uuidv4();
+    // duplicate validation
+    const servicesNames = project.services.map((service) => service.name);
+    const nameExists = servicesNames.includes(service.name);
+    if (nameExists) {
+      setMessage("Service name already exists, choose a different one");
+      setType("error");
+      resetMessage();
+      return;
+    }
 
-    const lastServiceCost = lastService.cost;
-    const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost);
+    service.id = uuidv4();
+    project.services.push(service);
+
+    const serviceCost = service.cost;
+    const newCost = parseFloat(project.cost) + parseFloat(serviceCost);
 
     // max value validation
     if (newCost > parseFloat(project.budget)) {
@@ -147,11 +163,7 @@ function Project() {
                 </div>
               ) : (
                 <div className={styles.project_info}>
-                  <ProjectForm
-                    btnText="Save Project"
-                    handleSubmit={editPost}
-                    projectData={project}
-                  />
+                  <ProjectForm btnText="Save Project" handleSubmit={editPost} />
                 </div>
               )}
             </div>

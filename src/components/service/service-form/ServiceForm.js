@@ -4,13 +4,12 @@ import Input from "../../form/input/Input";
 import Submit from "../../form/submit/Submit";
 import styles from "../../project/project-form/ProjectForm.module.css";
 
-function ServiceForm({ handleSubmit, btnText, projectData }) {
+function ServiceForm({ handleSubmit, btnText }) {
   const [service, setService] = useState(null);
 
   function submit(e) {
     e.preventDefault();
-    projectData.services.push(service);
-    handleSubmit(projectData);
+    handleSubmit(service);
   }
 
   function handleChange(e) {
