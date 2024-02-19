@@ -43,6 +43,7 @@ function Project() {
     if (project.budget < project.cost) {
       setMessage("Budget can't be lower than Project's total cost");
       setType("error");
+      resetMessage();
       return;
     }
 
@@ -59,6 +60,7 @@ function Project() {
         setShowProjectForm((value) => !value);
         setMessage("Project updated!");
         setType("success");
+        resetMessage();
       })
       .catch((err) => console.log(err));
   }
@@ -76,6 +78,7 @@ function Project() {
     if (newCost > parseFloat(project.budget)) {
       setMessage("Budget exceeded, verify the services cost!");
       setType("error");
+      resetMessage();
       project.services.pop();
       return;
     }
@@ -98,6 +101,7 @@ function Project() {
         setShowServiceForm(!showServiceForm);
         setMessage("Serviço adicionado!");
         setType("success");
+        resetMessage();
       })
       .catch((err) => console.log(err));
   }
@@ -110,6 +114,12 @@ function Project() {
 
   function toggleServiceForm() {
     setShowServiceForm((value) => !value);
+  }
+
+  function resetMessage() {
+    setTimeout(() => {
+      setMessage(null);
+    }, 3010);
   }
 
   return (
