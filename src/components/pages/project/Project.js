@@ -122,7 +122,28 @@ function Project() {
       .catch((err) => console.log(err));
   }
 
-  function removeService(service) {}
+  function removeService(id, cost) {
+    // setting new values to project
+    project.services = project.services.filter((service) => service.id !== id);
+    project.cost = parseFloat(project.cost) - parseFloat(cost);
+
+    fetch(`${url}/${project.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(project),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setProject(data);
+        setServices(data.services);
+        setMessage("Service removed successfully!");
+        setType("success");
+        resetMessage();
+      })
+      .catch((err) => console.log(err));
+  }
 
   function toggleProjectForm() {
     setShowProjectForm((value) => !value);
