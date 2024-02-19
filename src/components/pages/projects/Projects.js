@@ -11,13 +11,16 @@ import styles from "./Project.module.css";
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
-  const [projectMessage, setProjectMessage] = useState("");
+  const [projectMessage, setProjectMessage] = useState(null);
 
-  const location = useLocation();
+  let location = useLocation();
   let message = "";
 
   if (location.state) {
     message = location.state.message;
+    // to clear previous state, preventing the message to show on reload
+    // when navigated from new project creation
+    window.history.replaceState({}, "");
   }
 
   useEffect(() => {
@@ -48,8 +51,15 @@ function Projects() {
       .then(() => {
         setProjects(projects.filter((project) => project.id !== projectId));
         setProjectMessage("Project removed successfully!");
+        resetMessage();
       })
       .catch((e) => console.log(e));
+  }
+
+  function resetMessage() {
+    setTimeout(() => {
+      setProjectMessage(null);
+    }, 3010);
   }
 
   return (
